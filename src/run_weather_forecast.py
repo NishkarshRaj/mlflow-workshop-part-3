@@ -1,4 +1,5 @@
 import mlflow
+from mlflow.tracking import MlflowClient
 
 from cls.rfr_model import RFRModel
 from cls.utils import Utils
@@ -58,5 +59,12 @@ if __name__ == "__main__":
    # Use as payload on the REST call to the deployed model
    # on the local host
    print(score_df.to_json(orient="records"))
+   
+   client = MlflowClient()
+   client.transition_model_version_stage(
+       name="PowerForecastingModel",
+       version=1,
+       stage="Production"
+   )
 
 
