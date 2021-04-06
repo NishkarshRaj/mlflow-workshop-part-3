@@ -15,5 +15,7 @@ RUN apt install -y sqlite3
 ## MLFlow Command
 RUN ./remove_mlruns_db.sh
 RUN python3 run_weather_forecast.py
-CMD ./deploy_model.sh
+#CMD mlflow ui --backend-store-uri sqlite:///mlruns.db
+#CMD ./deploy_model.sh
 #RUN ./make_predictions.sh
+
