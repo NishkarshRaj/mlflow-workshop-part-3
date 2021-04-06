@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  db:
+      image: sql
+      build:
+          context: .
+          dockerfile: Sqlite
+      container_name: sqlite-db
+      ports:
+          - "5000:5000"
+  mlflow:
+      container_name: sklearn-model
+      image: flow
+      build:
+          context: .
+          dockerfile: Mlflow
+      ports:
+          - "3000:3000"
+
