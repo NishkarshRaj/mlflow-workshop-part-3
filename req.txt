@@ -1,8 +1,0 @@
-mlflow
-scikit-learn
-pandas
-matplotlib
-seaborn
-statsmodels
-keras
-tensorflow
