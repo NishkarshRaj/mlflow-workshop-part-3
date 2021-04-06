@@ -1,16 +1,19 @@
-FROM continuumio/miniconda3
+FROM ubuntu
+RUN apt-get -y upgrade && apt-get -y update
 
-# Create the environment using conda
-RUN conda install -c anaconda jupyter=1.0.0
-RUN conda install -c conda-forge mlflow=1.8.0
-RUN conda install -c anaconda scikit-learn=0.22.1
-RUN conda install -c anaconda psycopg2=2.8.5
-RUN conda install -c anaconda boto3=1.14.12
+## Python 3.8
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
 
-# Set up SSH
-RUN apt-get update && apt-get install -y openssh-server
-RUN useradd -m -s /bin/bash dockeruser
-RUN mkdir /var/run/sshd
-RUN echo 'dockeruser:123' | chpasswd
-EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+## Python Requirements
+ADD . .
+RUN pip3 install -r req.txt
+
+## SQlite
+RUN apt install -y sqlite3
+
+## MLFlow Command
+RUN ./remove_mlruns_db.sh
+RUN python3 run_weather_forecast.py
+CMD ./deploy_model.sh
+#RUN ./make_predictions.sh
