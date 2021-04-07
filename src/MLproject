@@ -1,0 +1,8 @@
+name: nish
+
+docker_env:
+    image:  mlflow-docker-example
+
+entry_points:
+  main:
+    command: "python run_weather_forecast.py"
