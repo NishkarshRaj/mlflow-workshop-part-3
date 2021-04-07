@@ -1,25 +1,33 @@
-version: '3.2'
+version: '3.3'
+
 services:
-  db:
-      image: sql
-      build:
-          context: .
-          dockerfile: Sqlite
-      container_name: sqlite-db
-      expose:
-          - "5000"
-  mlflow:
-      container_name: sklearn-model
-      image: flow
-      build:
-          context: .
-          dockerfile: Mlflow
-      expose:
-          - "3000"
-      networks:
-        - mlflow
+    web:
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: mlflow_server
+        container_name: mlflow_server
+        expose:
+            - "5000"
+        networks:
+            - mlflow
+        command: mlflow server --backend-store-uri sqlite:///mlruns.db --host 0.0.0.0        
+
+    nginx:
+        restart: always
+        build:
+            context: .
+            dockerfile: Nginx
+        image: mlflow_nginx
+        container_name: mlflow_nginx
+        ports:
+            - "80:80"
+        networks:
+            - mlflow
+        depends_on:
+            - web
 
 networks:
-  mlflow:
-    driver: bridge
-
+    mlflow:
+        driver: bridge
