@@ -1,7 +1,6 @@
 FROM python:3.8.9
 ADD . .
 RUN pip3 install -r req.txt
-#RUN ./remove_mlruns_db.sh
 RUN python3 run_weather_forecast.py
-#CMD ./deploy_model.sh
-CMD mlflow ui --backend-store-uri sqlite:///mlruns.db
+RUN ./deploy_model.sh
+CMD mlflow server --backend-store-uri sqlite:///mlruns.db --host 0.0.0.0
