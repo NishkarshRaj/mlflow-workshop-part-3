@@ -1,5 +1,6 @@
 import mlflow
 from mlflow.tracking import MlflowClient
+from mlflow import get_artifact_uri,get_tracking_uri
 
 from cls.rfr_model import RFRModel
 from cls.utils import Utils
@@ -66,5 +67,8 @@ if __name__ == "__main__":
        version=1,
        stage="Production"
    )
+   
+   print(get_artifact_uri())
+   print(get_tracking_uri())
 
 

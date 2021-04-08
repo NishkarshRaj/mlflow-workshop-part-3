@@ -1,0 +1,15 @@
+artifact_uri: file:///home/nish/Desktop/mlflow/examples/sklearn_elasticnet_wine/mlruns/0/ee140c09dddb478499284350beec5ab6/artifacts
+end_time: 1617875419944
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: ee140c09dddb478499284350beec5ab6
+run_uuid: ee140c09dddb478499284350beec5ab6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1617875414574
+status: 3
+tags: []
+user_id: root
