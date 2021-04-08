@@ -6,3 +6,5 @@ docker_env:
 entry_points:
   main:
     command: "python3 run_weather_forecast.py"
+  deploy:
+    command: "bash deploy_model.sh"
