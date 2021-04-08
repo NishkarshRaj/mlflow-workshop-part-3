@@ -1,11 +1,12 @@
-FROM continuumio/miniconda:4.5.4
+FROM continuumio/miniconda3
 
-RUN pip install mlflow>=1.0 \
-    && pip install pandas==0.22.0 \
-    && pip install scikit-learn==0.19.1 \
-    && pip install scipy 
-    
-RUN conda install -y sqlite
+RUN pip3 install --upgrade pip
+RUN pip3 install mlflow \
+    && pip3 install pandas \
+    && pip3 install scikit-learn \
+    && pip3 install scipy 
+RUN pip3 install pymysql
+RUN export MLFLOW_TRACKING_URI=mysql+pymysql://nishkarsh:nishkarsh@nishkarsh.cmuzdwd6qin5.ap-south-1.rds.amazonaws.com:3306/nishkarsh
+RUN mlflow db upgrade mysql+pymysql://nishkarsh:nishkarsh@nishkarsh.cmuzdwd6qin5.ap-south-1.rds.amazonaws.com:3306/nishkarsh
 
-ADD . .
-RUN python run_weather_forecast.py
+

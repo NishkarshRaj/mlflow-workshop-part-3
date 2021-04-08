@@ -5,4 +5,4 @@ docker_env:
 
 entry_points:
   main:
-    command: "python run_weather_forecast.py"
+    command: "python3 run_weather_forecast.py"
