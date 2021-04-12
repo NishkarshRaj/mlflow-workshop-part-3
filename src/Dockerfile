@@ -8,7 +8,7 @@ RUN apt-get install -y python3-pip
 ## Python Requirements
 ADD . .
 RUN pip3 install -r req.txt
-RUN pip3 install pymysql
+#RUN pip3 install pymysql
 
 ## MLFlow Command
 RUN python3 run_weather_forecast.py
