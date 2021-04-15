@@ -1,0 +1,7 @@
+FROM nish:e1d4200
+RUN export MLFLOW_TRACKING_URI=sqlite:///mlruns.db
+EXPOSE 3000
+ADD mlruns/ .
+ADD mlruns.db .
+ADD deploy_model.sh .
+CMD ./deploy_model.sh

@@ -6,7 +6,6 @@ RUN pip3 install mlflow \
     && pip3 install scikit-learn \
     && pip3 install scipy 
 RUN pip3 install pymysql
-RUN export MLFLOW_TRACKING_URI=mysql+pymysql://nishkarsh:nishkarsh@nishkarsh.cmuzdwd6qin5.ap-south-1.rds.amazonaws.com:3306/nishkarsh
-RUN mlflow db upgrade mysql+pymysql://nishkarsh:nishkarsh@nishkarsh.cmuzdwd6qin5.ap-south-1.rds.amazonaws.com:3306/nishkarsh
+RUN export MLFLOW_TRACKING_URI=sqlite:///mlruns.db
 
 
